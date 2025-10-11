@@ -1,1 +1,150 @@
-<p>singup-form works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  {{ registerForm.errors }}
+  <div class="px-12 pb-10">
+    <!-- (input filed): name -->
+    <div class="w-full mb-2">
+      <div class="flex flex-col">
+        <label for="name">User Name</label>
+        <input
+          formControlName="name"
+          id="name"
+          type="text"
+          placeholder="Enter Your Name"
+          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+        />
+      </div>
+      <!-- Error Handling -->
+      @let userName = registerForm.get('name'); @if
+      (userName?.touched&&userName?.errors) {
+      <app-error-message>
+        @if (userName?.getError('required')){
+        <li>This is required</li>
+        } @else if (userName?.getError('minlength')) {
+
+        <li>At least 8 characters (and up to 20 characters)</li>
+
+        } @else if (userName?.getError('maxlength')) {
+        <li>At least 8 characters (and up to 20 characters)</li>
+        }
+      </app-error-message>
+      }
+    </div>
+
+    <!-- (input filed): email -->
+    <div class="w-full mb-2">
+      <div class="flex flex-col">
+        <label for="email">User Email</label
+        ><input
+          formControlName="email"
+          id="email"
+          type="email"
+          placeholder="Enter Your Email"
+          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+        />
+      </div>
+      <!-- Error Handling -->
+      @let userEmail = registerForm.get('email'); @if
+      (userEmail?.touched&&userEmail?.errors) {
+      <app-error-message>
+        @if (userEmail?.getError('required')){
+        <li>Email is required</li>
+        } @else if (userEmail?.getError('email')) {
+
+        <li>Invalid Email</li>
+
+        }
+      </app-error-message>
+      }
+    </div>
+
+    <!-- (input filed): password -->
+    <div class="w-full mb-2">
+      <div class="flex flex-col">
+        <label for="password">User Passwprd</label
+        ><input
+          formControlName="password"
+          id="password"
+          type="password"
+          placeholder="Enter Your Password"
+          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+        />
+      </div>
+      <!-- Error Handling -->
+      @let userPassword = registerForm.get('password'); @if
+      (userPassword?.touched&&userPassword?.errors) {
+      <app-error-message>
+        @if (userPassword?.getError('required')){
+        <li>This is required</li>
+        } @else if (userPassword?.getError('pattern')) {
+        <li>
+          Minimum eight characters, at least one uppercase letter, one lowercase
+          letter and one number:
+        </li>
+        }
+      </app-error-message>
+      }
+    </div>
+
+    <!-- (input filed): rePassword -->
+    <div class="w-full mb-2">
+      <div class="flex flex-col">
+        <label for="rePassword">User Re-password</label
+        ><input
+          formControlName="rePassword"
+          id="rePassword"
+          type="password"
+          placeholder="Enter Your Re-Password"
+          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+        />
+      </div>
+      <!-- Error Handling -->
+      @let userRePassword = registerForm.get('rePassword');
+      @if(userRePassword?.touched&&userRePassword?.errors) {
+      <app-error-message>
+        @if (userRePassword?.getError('required')){
+        <li>This is required</li>
+        } @else if (userRePassword?.getError('pattern')) {
+        <li>
+          Minimum eight characters, at least one uppercase letter, one lowercase
+          letter, one number and one special character.
+        </li>
+        }@else if (userRePassword?.getError('missMatch')) {
+        <li>Passwords do not match</li>
+        }
+      </app-error-message>
+      }
+    </div>
+
+    <!-- (input filed): phone -->
+    <div class="w-full mb-2">
+      <div class="flex flex-col">
+        <label for="phone">User Phone</label
+        ><input
+          formControlName="phone"
+          id="phone"
+          type="tel"
+          placeholder="Enter Your Phone"
+          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
+        />
+      </div>
+      <!-- Error Handling -->
+      @let userPhone = registerForm.get('phone'); @if
+      (userPhone?.touched&&userPhone?.errors) {
+      <app-error-message>
+        @if (userPhone?.getError('required')){
+        <li>This is required</li>
+        } @else if (userPhone?.getError('pattern')) {
+        <li>Invalid Phone</li>
+        }
+      </app-error-message>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="mx-auto block w-1/3 py-2 mt-8 rounded-full bg-main text-gray-100 cursor-pointer focus:outline-none"
+    >
+      Submit
+    </button>
+  </div>
+</form>
