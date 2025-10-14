@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,7 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorMessage } from '../error-message/error-message';
-import { Subscription } from 'rxjs';
+import { interval, Subscription, take } from 'rxjs';
+import { AuthServices } from '../../services/auth';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ISignUpData, ISignUpResponse } from '../../interfaces/ISignUpUser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-singup-form',
@@ -15,16 +19,25 @@ import { Subscription } from 'rxjs';
   styleUrl: './singup-form.css',
 })
 export class SingupForm {
+  // Inject Services
+  private readonly _AuthServices = inject(AuthServices);
+  private readonly _Router = inject(Router);
+
+  // Variables
+  errorMessage: string | undefined;
+  successMessage: string | undefined;
+  isLoading: boolean = false;
+  timer: number = 3;
   private subscriptions = new Subscription();
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.registerForm.get('password')?.valueChanges.subscribe(() => {
+      this.signUpForm.get('password')?.valueChanges.subscribe(() => {
         this.checkPasswordMatch();
       })
     );
     this.subscriptions.add(
-      this.registerForm.get('rePassword')?.valueChanges.subscribe(() => {
+      this.signUpForm.get('rePassword')?.valueChanges.subscribe(() => {
         this.checkPasswordMatch();
       })
     );
@@ -34,7 +47,7 @@ export class SingupForm {
     this.subscriptions.unsubscribe();
   }
 
-  registerForm = new FormGroup({
+  signUpForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -60,8 +73,8 @@ export class SingupForm {
   });
 
   checkPasswordMatch() {
-    const password = this.registerForm.get('password')?.value;
-    const rePasswordControl = this.registerForm.get('rePassword');
+    const password = this.signUpForm.get('password')?.value;
+    const rePasswordControl = this.signUpForm.get('rePassword');
     const rePassword = rePasswordControl?.value;
 
     if (!rePassword || !password) {
@@ -72,8 +85,44 @@ export class SingupForm {
       : rePasswordControl.setErrors(null);
   }
 
-  register() {
-    this.registerForm.markAllAsTouched();
-    console.log(this.registerForm.value);
+  onSubmit() {
+    this.handleBeforeSubmit();
+
+    // check is valid form
+    if (this.signUpForm.valid) {
+      this._AuthServices
+        .signUpUser(this.signUpForm.value as ISignUpData)
+        .subscribe({
+          next: (res: ISignUpResponse) => this.handleSuccessResponse(res),
+          error: (err: HttpErrorResponse) => this.handleErrorResponse(err),
+        });
+    }
+  }
+
+  handleBeforeSubmit(): void {
+    this.signUpForm.markAllAsTouched();
+    this.successMessage = undefined;
+    this.errorMessage = undefined;
+    this.isLoading = true;
+  }
+
+  handleSuccessResponse(res: ISignUpResponse): void {
+    this.signUpForm.reset();
+    this.successMessage = res.message;
+    this.isLoading = false;
+
+    interval(1000)
+      .pipe(take(3))
+      .subscribe(() => {
+        this.timer--;
+        if (this.timer == 0) {
+          this._Router.navigateByUrl('/signin');
+        }
+      });
+  }
+
+  handleErrorResponse(err: HttpErrorResponse): void {
+    this.errorMessage = err.error.message;
+    this.isLoading = false;
   }
 }
