@@ -12,8 +12,6 @@ import { BaseHttp } from '../../../core/services/http/baseHttp';
 export class AuthServices {
   private readonly _BaseHttp = inject(BaseHttp);
 
-  constructor(private _HttpClient: HttpClient) {}
-
   signUpUser(userData: ISignUpData): Observable<ISignUpResponse> {
     return this._BaseHttp.post<ISignUpResponse, ISignUpData>(
       AppApis.SignUpURL,
