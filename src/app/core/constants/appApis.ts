@@ -8,4 +8,8 @@ export const AppApis = {
   // Products
   AllProductsURL: `${environments.BaseURL}products`,
   SingleProductsURL: `${environments.BaseURL}products`,
+
+  // Categories
+  AllCategoriesURL: `${environments.BaseURL}categories`,
+  SingleCategoryURL: `${environments.BaseURL}categories`,
 } as const;

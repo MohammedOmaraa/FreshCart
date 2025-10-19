@@ -1,17 +1,9 @@
+<app-header-title [title]="'All Products'" />
+
 @if (!allProducts) {
-<div class="min-h-screen flex justify-center items-center">
-  <div
-    style="border-top-color: transparent"
-    class="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin"
-  ></div>
-</div>
+<app-loading-spinner />
 } @else {
 <section>
-  <header>
-    <h1>Fresh Cart - All Products</h1>
-  </header>
-  <hr class="my-4" />
-
   <div class="grid grid-cols-3">
     @for ( p of allProducts; track p._id) {
     <div class="p-4">
