@@ -6,7 +6,7 @@
 <section>
   <div class="grid grid-cols-3">
     @for ( p of allProducts.slice(0,9); track p._id) {
-    <app-product [data]="p" />
+    <app-product-card [data]="p" />
     }
   </div>
 </section>

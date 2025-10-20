@@ -3,11 +3,11 @@ import { LoadingSpinner } from "../../../../shared/components/loading-spinner/lo
 import { HeaderTitle } from "../../../../shared/components/header-title/header-title";
 import { ProductService } from '../../../products/services/productService';
 import { IProduct } from '../../../products/interfaces/IAllProducts';
-import { Product } from "../../../../shared/components/product/product";
+import {  ProductCard } from "../../../../shared/components/product-card/product-card";
 
 @Component({
   selector: 'app-popular-products',
-  imports: [LoadingSpinner, HeaderTitle, Product],
+  imports: [LoadingSpinner, HeaderTitle, ProductCard],
   templateUrl: './popular-products.html',
   styleUrl: './popular-products.css'
 })
