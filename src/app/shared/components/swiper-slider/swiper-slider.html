@@ -1,0 +1,16 @@
+<swiper-container
+  class="overflow-hidden"
+  [attr.slides-per-view]="slidesPerView"
+  loop="true"
+  autoplay-delay="10"
+  speed="4000"
+  [attr.effect]="effect"
+  [pagination]="{ hideOnClick: false }"
+>
+  @for (ele of data; track $index) {
+  <swiper-slide
+    ><img class="h-36 w-screen" [src]="ele.image" alt="" />
+    <h2>{{ ele.name }}</h2></swiper-slide
+  >
+  }
+</swiper-container>
