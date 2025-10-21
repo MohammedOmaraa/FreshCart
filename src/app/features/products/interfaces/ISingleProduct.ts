@@ -1,9 +1,9 @@
 export interface ISingleProductApiRes {
-  data: Data;
+  data: ISingleProduct;
 }
 
-interface Data {
-  sold: number;
+export interface ISingleProduct {
+  sold: null | number;
   images: string[];
   subcategory: ISubcategory[];
   ratingsQuantity: number;
