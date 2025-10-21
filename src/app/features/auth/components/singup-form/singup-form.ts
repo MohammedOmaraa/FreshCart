@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -22,15 +23,19 @@ export class SingupForm {
   // Inject Services
   private readonly _AuthServices = inject(AuthServices);
   private readonly _Router = inject(Router);
+  private readonly _fb = inject(FormBuilder);
 
   // Variables
   errorMessage: string | undefined;
   successMessage: string | undefined;
   isLoading: boolean = false;
   timer: number = 3;
+  signUpForm!: FormGroup;
   private subscriptions = new Subscription();
 
   ngOnInit(): void {
+    this.initForm();
+
     this.subscriptions.add(
       this.signUpForm.get('password')?.valueChanges.subscribe(() => {
         this.checkPasswordMatch();
@@ -47,30 +52,41 @@ export class SingupForm {
     this.subscriptions.unsubscribe();
   }
 
-  signUpForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-    ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-      ),
-    ]),
-    rePassword: new FormControl('', [
-      Validators.required,
-      Validators.pattern(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-      ),
-    ]),
-    phone: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^01[0125][0-9]{8}$/),
-    ]),
-  });
+  private initForm(): void {
+    this.signUpForm = this._fb.group({
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ),
+        ],
+      ],
+      rePassword: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ),
+        ],
+      ],
+      phone: [
+        '',
+        [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)],
+      ],
+    });
+  }
 
   checkPasswordMatch() {
     const password = this.signUpForm.get('password')?.value;

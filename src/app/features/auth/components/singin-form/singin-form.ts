@@ -1,10 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
   Validators,
   ReactiveFormsModule,
+  FormBuilder,
 } from '@angular/forms';
 import { Subscription, interval, take } from 'rxjs';
 import { AuthServices } from '../../services/auth';
@@ -18,35 +19,48 @@ import { ISignInData, ISignInResponse } from '../../interfaces/ISignInUser';
   templateUrl: './singin-form.html',
   styleUrl: './singin-form.css',
 })
-export class SinginForm {
+export class SinginForm implements OnInit {
   // Inject Services
   private readonly _AuthServices = inject(AuthServices);
   private readonly _Router = inject(Router);
+  private readonly _fb = inject(FormBuilder);
 
   // Variables
   errorMessage: string | undefined;
   successMessage: string | undefined;
   isLoading: boolean = false;
+  signInForm!: FormGroup;
 
-  signInForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-      ),
-    ]),
-  });
+  ngOnInit(): void {
+    this.initForm();
+  }
+
+  private initForm(): void {
+    this.signInForm = this._fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ),
+        ],
+      ],
+    });
+  }
 
   onSubmit() {
     this.handleBeforeSubmit();
 
     // check is valid form
     if (this.signInForm.valid) {
-      this._AuthServices.signInUser(this.signInForm.value as ISignInData).subscribe({
-        next: (res:ISignInResponse) => this.handleSuccessResponse(res),
-        error: (err: HttpErrorResponse) => this.handleErrorResponse(err),
-      });
+      this._AuthServices
+        .signInUser(this.signInForm.value as ISignInData)
+        .subscribe({
+          next: (res: ISignInResponse) => this.handleSuccessResponse(res),
+          error: (err: HttpErrorResponse) => this.handleErrorResponse(err),
+        });
     }
   }
 
