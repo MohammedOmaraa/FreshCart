@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   FormBuilder,
 } from '@angular/forms';
-import { Subscription, interval, take } from 'rxjs';
+import { Subscription, interval, take, timer } from 'rxjs';
 import { AuthServices } from '../../services/auth';
 import { Router } from '@angular/router';
 import { ErrorMessage } from '../error-message/error-message';
@@ -75,6 +75,11 @@ export class SinginForm implements OnInit {
     this.signInForm.reset();
     this.successMessage = res.message;
     this.isLoading = false;
+    localStorage.setItem('token', res.token);
+
+    timer(1000).subscribe(() => {
+      this._Router.navigateByUrl('/home');
+    });
   }
 
   handleErrorResponse(err: HttpErrorResponse): void {
