@@ -6,4 +6,9 @@ export const CART_ROUTES: Routes = [
     loadComponent: () =>
       import('./pages/cart-page/cart-page').then((c) => c.CartPage),
   },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./pages/checkout/checkout').then((c) => c.Checkout),
+  },
 ];

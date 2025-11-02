@@ -1,15 +1,18 @@
 import { environments } from '../../../environments/environment.dev';
 
+const BASE = environments.BaseURL;
+
 export const AppApis = {
   // Auth
-  SignUpURL: `${environments.BaseURL}auth/signup`,
-  SignInURL: `${environments.BaseURL}auth/signin`,
+  SignUpURL: `${BASE}auth/signup`,
+  SignInURL: `${BASE}auth/signin`,
 
   // Products
-  AllProductsURL: `${environments.BaseURL}products`,
-  SingleProductsURL: `${environments.BaseURL}products`,
+  AllProductsURL: `${BASE}products`,
+  SingleProductsURL: `${BASE}products`,
 
   // Categories
-  AllCategoriesURL: `${environments.BaseURL}categories`,
-  SingleCategoryURL: `${environments.BaseURL}categories`,
+  AllCategoriesURL: `${BASE}categories`,
+  SingleCategoryURL: `${BASE}categories`,
+
 } as const;

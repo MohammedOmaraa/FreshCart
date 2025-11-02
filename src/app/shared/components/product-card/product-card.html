@@ -23,7 +23,18 @@
       </a>
 
       <div class="flex items-center flex-wrap">
-        <button class="btn-main">Add To Cart</button>
+        <button 
+        [disabled]="isLoading"
+        (click)="addProductToCart(data._id)" class="btn-main relative disabled:!bg-gray-500 disabled:!cursor-auto">
+          Add To Cart
+
+          @if (isLoading) {
+            <div class="absolute top-1/2 -translate-y-1/2 end-0 me-5">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          </div>
+          }
+        </button>
+
         <span
           class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200"
         >
