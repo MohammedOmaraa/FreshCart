@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent } from '@angular/common/http';
 import { catchError, OperatorFunction, throwError } from 'rxjs';
 import { CartErrorHandler } from '../../features/cart/cart-error-handler';
+import { toast } from 'ngx-sonner';
 
 @Injectable({ providedIn: 'root' })
 export class ErrorHandlerService {
@@ -58,7 +59,8 @@ export class ErrorHandlerService {
         }
       }
 
-      console.log(message);
+      toast.error(message);
+
       return throwError(() => error);
     });
   }

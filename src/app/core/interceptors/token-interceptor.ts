@@ -3,6 +3,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { toast } from 'ngx-sonner';
 
 // Endpoints need token
 const protectedEndpoints = [
@@ -46,9 +47,10 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
     return next(cloned);
   }
 
+  toast.error('Unauthorized User ', { description: 'Login Again' });
   // if token not exist and req need token
   router.navigate(['/signin']);
-  
+
   return throwError(
     () =>
       new HttpErrorResponse({

@@ -3,10 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './core/services/flowbite/flowbite.service';
 import { initFlowbite } from 'flowbite';
 import { Footer } from './core/components/footer/footer';
+import {  NgxSonnerToaster } from 'ngx-sonner';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer],
+  imports: [RouterOutlet, Footer, NgxSonnerToaster],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
