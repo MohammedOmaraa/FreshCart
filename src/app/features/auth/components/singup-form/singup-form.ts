@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { ErrorMessage } from '../error-message/error-message';
 import { interval, Subscription, take } from 'rxjs';
-import { AuthServices } from '../../services/auth';
+import { AuthServices } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ISignUpData, ISignUpResponse } from '../../interfaces/ISignUpUser';
 import { Router } from '@angular/router';

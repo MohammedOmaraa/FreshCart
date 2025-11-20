@@ -47,6 +47,24 @@ export const routes: Routes = [
             (r) => r.BRANDS_Routes
           ),
       },
+      {
+        path: 'checkout',
+        loadChildren: () =>
+          import('./features/payment/payment.routes').then(
+            (r) => r.PAYMENT_ROUTES
+          ),
+      },
+
+      // handle stripe success url
+      { path: 'allorders', redirectTo: 'orders/all', pathMatch: 'full' },
+
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./features/orders/orders.routes').then(
+            (r) => r.ORDERS_ROUTES
+          ),
+      },
     ],
   },
 ];

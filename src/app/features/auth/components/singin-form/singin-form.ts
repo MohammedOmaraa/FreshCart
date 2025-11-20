@@ -7,11 +7,12 @@ import {
   ReactiveFormsModule,
   FormBuilder,
 } from '@angular/forms';
-import { Subscription, interval, take, timer } from 'rxjs';
-import { AuthServices } from '../../services/auth';
+import {  timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { ErrorMessage } from '../error-message/error-message';
 import { ISignInData, ISignInResponse } from '../../interfaces/ISignInUser';
+import { toast } from 'ngx-sonner';
+import { AuthServices } from '../../services/auth.service';
 
 @Component({
   selector: 'app-singin-form',
@@ -71,14 +72,17 @@ export class SinginForm implements OnInit {
     this.isLoading = true;
   }
 
-  handleSuccessResponse(res: ISignInResponse): void {
+  handleSuccessResponse(res: ISignInResponse) {
     this.signInForm.reset();
     this.successMessage = res.message;
     this.isLoading = false;
-    localStorage.setItem('token', res.token);
-
-    timer(1000).subscribe(() => {
-      this._Router.navigateByUrl('/home');
+    this._AuthServices.saveToken(res.token);
+    this._AuthServices.verifyToken().subscribe({
+      next: () => {
+        toast.success('Login successful!');
+        timer(1000).subscribe(() => this._Router.navigateByUrl('/home'));
+      },
+      error: (err: { message: string }) => toast.error(err.message),
     });
   }
 

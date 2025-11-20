@@ -1,20 +1,26 @@
-import { environments } from '../../../environments/environment.dev';
+import { environments } from '../../../environments/environment';
 
-const BASE = `${environments.BaseURL}cart/`;
+const BASE = `${environments.BaseURL}cart`;
 
 export const CartApi = {
-  /** get user cart */
+  /** Endpoint to get the current user's cart */
   Get: BASE,
 
-  /** add product to cart */
+  /** Endpoint to add a product to the cart */
   Add: BASE,
 
-  /** update product count */
+  /**
+   * Endpoint to update the quantity of a product in the cart
+   * @param id - The ID of the product to update
+   */
   Update: (id: string) => `${BASE}${id}`,
 
-  /** delete product from cart */
+  /**
+   * Endpoint to delete a product from the cart
+   * @param id - The ID of the product to delete
+   */
   Delete: (id: string) => `${BASE}${id}`,
 
-  /** claer cart */
+  /** Endpoint to clear the entire cart */
   Clear: BASE,
 } as const;

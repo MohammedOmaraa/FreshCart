@@ -4,6 +4,7 @@ import { inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { toast } from 'ngx-sonner';
+import { AuthServices } from '../../features/auth/services/auth.service';
 
 // Endpoints need token
 const protectedEndpoints = [
@@ -18,6 +19,7 @@ const protectedEndpoints = [
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const platformId = inject(PLATFORM_ID);
+  const _AuthServices = inject(AuthServices);
   const router = inject(Router);
 
   // if req on server
@@ -38,7 +40,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
     return next(req);
   }
 
-  const token = localStorage.getItem('token');
+  const token = _AuthServices.getToken();
 
   if (token) {
     const cloned = req.clone({

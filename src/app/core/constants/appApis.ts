@@ -1,12 +1,8 @@
-import { environments } from '../../../environments/environment.dev';
+import { environments } from '../../../environments/environment';
 
 const BASE = environments.BaseURL;
 
 export const AppApis = {
-  // Auth
-  SignUpURL: `${BASE}auth/signup`,
-  SignInURL: `${BASE}auth/signin`,
-
   // Products
   AllProductsURL: `${BASE}products`,
   SingleProductsURL: `${BASE}products`,
@@ -14,5 +10,4 @@ export const AppApis = {
   // Categories
   AllCategoriesURL: `${BASE}categories`,
   SingleCategoryURL: `${BASE}categories`,
-
 } as const;
