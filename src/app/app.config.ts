@@ -1,3 +1,5 @@
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideTranslateService } from '@ngx-translate/core';
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -26,7 +28,15 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(
       withFetch(),
-      withInterceptors([tokenInterceptor,errorInterceptor ])
+      withInterceptors([tokenInterceptor, errorInterceptor])
     ),
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({
+        prefix: './i18n/',
+        suffix: '.json',
+      }),
+      fallbackLang: 'en',
+      lang: 'en',
+    }),
   ],
 };

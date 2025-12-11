@@ -5,6 +5,6 @@ export const STORED_KEYS = {
   },
   settings: {
     theme: 'settings_theme',
-    language: 'settings_language',
+    language: 'language',
   },
 } as const;
