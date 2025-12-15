@@ -1,42 +1,50 @@
-import { Component, inject, Input, PLATFORM_ID } from '@angular/core';
+import { Component, inject, Input, ViewEncapsulation } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthServices } from '../../../features/auth/services/auth.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { STORED_KEYS } from '../../constants/storedKeys';
-import { isPlatformBrowser } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ThemeService } from '../../services/theme.service';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import { ToggleTheme } from '../toggle-theme/toggle-theme';
+import { ToggleLanguage } from '../toggle-language/toggle-language';
+import { ShoppingCartIcon, User, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive, TranslatePipe],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    TranslatePipe,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    FormsModule,
+    ToggleTheme,
+    ToggleLanguage,
+    LucideAngularModule,
+  ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Navbar {
   // Inject Services
   private readonly _AuthServices = inject(AuthServices);
-  private readonly translate = inject(TranslateService);
-  private readonly PLATFORM = inject(PLATFORM_ID);
 
   // Variables
   @Input() isLoggedIn: boolean = false;
+  readonly UserIcon = User;
+  readonly shoppingCartIcon = ShoppingCartIcon;
 
-  ngOnInit(): void {
-    if (isPlatformBrowser(this.PLATFORM)) {
-      if (localStorage.getItem(STORED_KEYS.settings.language)) {
-        this.translate.use(
-          localStorage.getItem(STORED_KEYS.settings.language)!
-        );
-      }
-    }
-  }
   signOut(): void {
     this._AuthServices.signOut();
-  }
-
-  toggleLang(lang: string): void {
-    localStorage.setItem(STORED_KEYS.settings.language, lang.toLowerCase());
-    this.translate.use(lang.toLowerCase());
-    document.documentElement.dir = lang.toLowerCase() == 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang.toLowerCase();
   }
 }

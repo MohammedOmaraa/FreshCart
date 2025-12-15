@@ -4,7 +4,7 @@ export const STORED_KEYS = {
     user: 'auth_user',
   },
   settings: {
-    theme: 'settings_theme',
+    theme: 'theme',
     language: 'language',
   },
 } as const;

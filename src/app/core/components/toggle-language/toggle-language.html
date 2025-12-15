@@ -1,0 +1,13 @@
+<mat-form-field class="relative !w-[90px] !py-0">
+
+  <mat-select class="!w-[50px] !text-primary-dark dark:!text-white" (valueChange)="changeLang($event)"
+    [(value)]="selected">
+    @for (lang of availableLanguages; track $index) {
+    <mat-option class="!text-primary-dark dark:!text-white rtl:!flex-row-reverse"
+      [value]="lang.code">{{lang.code}}</mat-option>
+    }
+  </mat-select>
+
+  <lucide-angular [img]="globeIcon" class="text-primary-dark dark:text-white absolute start-4"></lucide-angular>
+
+</mat-form-field>

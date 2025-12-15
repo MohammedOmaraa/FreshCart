@@ -1,11 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FlowbiteService } from './core/services/flowbite/flowbite.service';
-import { initFlowbite } from 'flowbite';
 import { Footer } from './core/components/footer/footer';
-import {  NgxSonnerToaster } from 'ngx-sonner';
-
-
+import { NgxSonnerToaster } from 'ngx-sonner';
+import { ThemeService } from './core/services/theme.service';
+import { LanguageService } from './core/services/language.service';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, Footer, NgxSonnerToaster],
@@ -15,10 +13,6 @@ import {  NgxSonnerToaster } from 'ngx-sonner';
 export class App {
   protected readonly title = signal('FreshCart');
 
-  private readonly flowbiteService = inject(FlowbiteService);
-  ngOnInit(): void {
-    this.flowbiteService.loadFlowbite((flowbite) => {
-      initFlowbite();
-    });
-  }
+  private readonly themeService = inject(ThemeService);
+  private readonly languageService = inject(LanguageService);
 }
