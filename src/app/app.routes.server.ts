@@ -2,6 +2,10 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
+    path: 'checkout/:cartId',
+    renderMode: RenderMode.Client,
+  },
+  {
     path: 'products/details/:productId/:slug',
     renderMode: RenderMode.Client,
   },
