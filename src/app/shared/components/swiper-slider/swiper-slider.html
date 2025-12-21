@@ -1,16 +1,45 @@
-<swiper-container
-  class="overflow-hidden"
-  [attr.slides-per-view]="slidesPerView"
-  loop="true"
-  autoplay-delay="10"
-  speed="4000"
-  [attr.effect]="effect"
-  [pagination]="{ hideOnClick: false }"
->
-  @for (ele of data; track $index) {
-  <swiper-slide
-    ><img class="h-36 w-screen" [src]="ele.image" alt="" />
-    <h2>{{ ele.name }}</h2></swiper-slide
-  >
+@if(isBrowser){
+@if (navigation()) {
+@if (dir() == 'rtl') {
+<swiper-container dir="rtl" [breakpoints]="defaultBreakpoints()" [class]="containerClasses()" class="main-swiper overflow-hidden h-full w-full"
+  [direction]="direction()" [slidesPerView]="slidesPerView()" [spaceBetween]="spaceBetween()" [effect]="effect()"
+  pagination="true" pagination-clickable="true" navigation autoplay-delay="2500"
+  autoplay-disable-on-interaction="false">
+  @for (item of data(); track $index) {
+  <swiper-slide [class]="slideClasses()" class="z-10 overflow-hidden">
+    <img [src]="item.image" class="w-full h-72" />
+    @if(item.name){
+    <h2 class="absolute top-0 start-0 z-10 py-1 px-2 bg-primary/70 text-white/90 rounded-e-2xl">{{
+      item.name }}</h2>}
+  </swiper-slide>
   }
 </swiper-container>
+}@else {
+<swiper-container [class]="containerClasses()" class="main-swiper overflow-hidden h-72 w-full" [direction]="direction()"
+  [slidesPerView]="slidesPerView()" [spaceBetween]="spaceBetween()" [effect]="effect()" pagination="true"
+  pagination-clickable="true" navigation autoplay-delay="2500" autoplay-disable-on-interaction="false">
+  @for (item of data(); track $index) {
+  <swiper-slide [class]="slideClasses()" class="z-10 overflow-hidden">
+    <img [src]="item.image" class="w-full h-72" />
+    @if(item.name){
+    <h2 class="absolute top-0 start-0 z-10 py-1 px-2 bg-primary/70 text-white/90 rounded-e-2xl">{{
+      item.name }}</h2>}
+  </swiper-slide>
+  }
+</swiper-container>}
+
+}@else {
+<swiper-container [class]="containerClasses()" class="main-swiper overflow-hidden h-72 w-full" [direction]="direction()"
+  [slidesPerView]="slidesPerView()" [spaceBetween]="spaceBetween()" [effect]="effect()" pagination="true"
+  pagination-clickable="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+  @for (item of data(); track $index) {
+  <swiper-slide [class]="slideClasses()" class="z-10 overflow-hidden">
+    <img [src]="item.image" class="w-full h-72" />
+    @if(item.name){
+    <h2 class="absolute top-0 start-0 z-10 py-1 px-2 bg-primary/70 text-white/90 rounded-e-2xl">{{
+      item.name }}</h2>}
+  </swiper-slide>
+  }
+</swiper-container>
+}
+}

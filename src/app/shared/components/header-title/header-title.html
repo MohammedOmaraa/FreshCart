@@ -1,4 +1,9 @@
 <header>
-  <h1>Fresh Cart - {{ title }}</h1>
+  <h1 class="my-5 relative inline-block text-3xl font-bold text-primary-darkest/90 dark:text-white/90 
+           after:content-[''] after:absolute after:left-0 after:bottom-[-2px] 
+           after:w-full after:h-[2px] after:via-95%
+           rtl:after:bg-gradient-to-r after:bg-gradient-to-l after:from-transparent 
+           after:via-primary after:to-primary">
+    {{ title |translate}}
+  </h1>
 </header>
-<hr class="my-4" />

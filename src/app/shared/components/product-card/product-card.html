@@ -1,76 +1,34 @@
-<div class="p-4">
-  <div
-    class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden flex flex-col"
-  >
-    <img
-      class="lg:h-48 md:h-36 w-full object-contain object-center"
-      [src]="data.imageCover"
-      [alt]="data.title"
-    />
-    <div class="p-6 flex flex-col justify-between flex-1">
-      <a [routerLink]="['/products/details', data._id, data.slug]">
-        <h2
-          class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"
-        >
-          {{ data.category.name }}
-        </h2>
-        <h1
-          class="title-font text-lg font-medium text-gray-900 mb-3 line-clamp-1"
-        >
-          {{ data.title }}
-        </h1>
-        <p class="leading-relaxed mb-3 line-clamp-2">{{ data.description }}</p>
-      </a>
+<div
+  class="p-4 border overflow-hidden border-primary-darkest/20 duration-500 hover:border-primary dark:hover:border-white/70 group hover:shadow-lg hover:shadow-primary/50 dark:hover:shadow-white/50 rounded-4xl bg-white dark:bg-primary-darker">
 
-      <div class="flex items-center flex-wrap">
-        <button 
-        [disabled]="isLoading"
-        (click)="addProductToCart(data._id)" class="btn-main relative disabled:!bg-gray-500 disabled:!cursor-auto">
-          Add To Cart
+  <div class="product-img overflow-hidden rounded-3xl relative">
+    <img class="w-full scale-125 duration-300 group-hover:scale-y-100" [src]="data.imageCover" [alt]="data.title" />
 
-          @if (isLoading) {
-            <div class="absolute top-1/2 -translate-y-1/2 end-0 me-5">
-            <i class="fa-solid fa-spinner fa-spin"></i>
-          </div>
-          }
-        </button>
+    <!-- add to fav -->
+    <a
+      class="cursor-pointer group/fav absolute w-8 h-8 flex items-center justify-center hover:bg-primary top-6 end-4 rounded-full bg-white duration-100 dark:bg-primary-dark">
+      <lucide-angular [img]="HeartIcon"
+        class="text-primary-darker group-hover/fav:text-white duration-100 dark:text-white"></lucide-angular>
+    </a>
+  </div>
 
-        <span
-          class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200"
-        >
-          <svg
-            class="w-4 h-4 mr-1"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            viewBox="0 0 24 24"
-          >
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-            <circle cx="12" cy="12" r="3"></circle>
-          </svg>
-          >1.2K
-        </span>
-        <span
-          class="text-gray-400 inline-flex items-center leading-none text-sm"
-        >
-          <svg
-            class="w-4 h-4 mr-1"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
-            ></path>
-          </svg>
-          >6
-        </span>
+  <div class="product-details mt-3">
+    <a [routerLink]="['/products/details', data._id, data.slug]" class="hover:underline hover:underline-offset-4 decoration-2 decoration-primary-darker dark:decoration-white">
+      <h2 class="title-font text-lg font-semibold text-primary-darkest line-clamp-1 dark:text-white/90">
+        {{ data.title }}
+      </h2>
+      <h3 class="tracking-tight text-primary-darkest/60 line-clamp-1 dark:text-white/70">
+        {{ data.category.name }} - {{data.brand.name}}
+      </h3>
+    </a>
+    <div class="flex justify-between items-center mt-2">
+      <h3 class="font-bold text-2xl text-primary">{{data.price | currency}}</h3>
+
+      <!-- add to cart -->
+      <div (click)="addProductToCart(data._id)"
+        class="cursor-pointer group/cart w-10 h-10 flex items-center justify-center hover:bg-primary rounded-full bg-primary/15 duration-100 dark:bg-primary-dark">
+        <lucide-angular [img]="ShoppingCartIcon"
+          class="text-primary-darker group-hover/cart:text-white duration-100 dark:text-white"></lucide-angular>
       </div>
     </div>
   </div>
-</div>

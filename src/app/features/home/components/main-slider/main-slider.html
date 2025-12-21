@@ -1,1 +1,8 @@
-<app-swiper-slider [data]="images" />
+<div class="flex flex-wrap mb-3">
+    <app-swiper-slider class="lg:w-2/3 w-full "
+        [containerClasses]="'rounded-2xl rounded-b-none lg:rounded-e-none lg:rounded-s-2xl'" [data]="images|slice:0:7"
+        [slidesPerView]="1" [navigation]="true" />
+    <app-swiper-slider class="lg:w-1/3  w-full"
+        [containerClasses]="'rounded-2xl rounded-t-none lg:rounded-s-none lg:rounded-e-2xl'" [data]="images|slice:7"
+        [direction]="'vertical'" [slidesPerView]="1" [navigation]="false" effect="coverflow" />
+</div>

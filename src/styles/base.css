@@ -1,3 +1,11 @@
 .btn-main {
     @apply rounded-full bg-primary text-gray-100 cursor-pointer py-2 px-8
 }
+
+.app-container {
+    @apply mx-auto px-3 md:px-10 lg:px-20 max-w-[1440px];
+}
+
+.grid-products{
+   @apply grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+}

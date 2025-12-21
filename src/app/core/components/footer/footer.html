@@ -1,88 +1,99 @@
-<footer class="text-gray-600 body-font dark:bg-gray-900">
-  <div
-    class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col"
-  >
-    <a
-      class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900"
-    >
-      <img src="images/freshcart-logo-Dark.svg" class="" alt="FreshCart" />
-    </a>
-    <p
-      class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
-    >
-      &copy; {{ date }} Mohamed Omara
-      <a
-        href="https://www.linkedin.com/in/mohamed-omara-06237120a/"
-        class="text-gray-600 ml-1"
-        rel="noopener noreferrer"
-        target="_blank"
-        >@omara</a
-      >
-    </p>
-    <span
-      class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start"
-    >
-      <a class="text-gray-500">
-        <svg
-          fill="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
-          ></path>
-        </svg>
-      </a>
-      <a class="ml-3 text-gray-500">
-        <svg
-          fill="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
-          ></path>
-        </svg>
-      </a>
-      <a class="ml-3 text-gray-500">
-        <svg
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-        >
-          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-          <path
-            d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
-          ></path>
-        </svg>
-      </a>
-      <a class="ml-3 text-gray-500">
-        <svg
-          fill="currentColor"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="0"
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="none"
-            d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
-          ></path>
-          <circle cx="4" cy="4" r="2" stroke="none"></circle>
-        </svg>
-      </a>
-    </span>
+<footer
+  class=" border-t border-primary-darkest/15 bg-white text-primary-dark dark:text-white/70 dark:border-white/10 dark:bg-primary-darker">
+  <div class="app-container py-4">
+
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+
+      <!-- Brand -->
+      <div class="col-span-2 lg:col-span-2 flex flex-col gap-4">
+        <div class="flex items-center gap-3 mb-2">
+          <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white">
+            <lucide-angular [img]="shoppingCartIcon" class="w-5 h-5"></lucide-angular>
+          </div>
+
+          <span class="text-xl font-bold text-primary-darkest dark:text-white">
+            FreshCart
+          </span>
+        </div>
+
+        <p class="text-sm leading-relaxed max-w-sm">
+          Your one-stop destination for premium electronics, fashion, and
+          lifestyle products. Quality guaranteed on every purchase.
+        </p>
+
+        <p class="text-xs text-primary-darkest/80 dark:text-white/50">
+          © {{date}} FreshCart. All rights reserved.
+        </p>
+
+        <!-- Social -->
+        <div class="flex gap-4 mt-2">
+          <a href="https://www.facebook.com/mohamed.omara.993202" target="_blank"
+            class="hover:shadow-lg hover:shadow-primary dark:hover:shadow-white/50 w-10 h-10 rounded-full flex items-center justify-center transition-colors bg-primary text-white dark:bg-white/10">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+              <path
+                d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2v-3h2V9.8c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12Z" />
+            </svg>
+          </a>
+
+          <a href="https://github.com/mohamed7855" target="_blank"
+            class="hover:shadow-lg hover:shadow-primary dark:hover:shadow-white/50 w-10 h-10 rounded-full flex items-center justify-center transition-colors bg-primary text-white dark:bg-white/10">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
+              <path
+                d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.5-1.4-1.9-1.4-1.9-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.3 1.8 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.6.1-3.3 0 0 1-.3 3.3 1.3a11.4 11.4 0 0 1 6 0C16.5 5 17.5 5.3 17.5 5.3c.7 1.7.2 3 .1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z" />
+            </svg>
+          </a>
+
+          <a href="https://www.linkedin.com/in/mohamed-omara-06237120a/" target="_blank"
+            class="hover:shadow-lg hover:shadow-primary dark:hover:shadow-white/50 w-10 h-10 rounded-full flex items-center justify-center transition-colors bg-primary text-white dark:bg-white/10">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
+              <path
+                d="M20.45 20.45h-3.55v-5.4c0-1.29-.03-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85v5.5H9.47V9h3.4v1.56h.05c.47-.9 1.6-1.85 3.3-1.85 3.53 0 4.18 2.32 4.18 5.34v6.4ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+            </svg>
+          </a>
+
+          <a href="https://github.com/MohammedOmaraa" target="_blank"
+            class="hover:shadow-lg hover:shadow-primary dark:hover:shadow-white/50 w-10 h-10 rounded-full flex items-center justify-center transition-colors bg-primary text-white dark:bg-white/10">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current" aria-hidden="true">
+              <path
+                d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.5-1.4-1.9-1.4-1.9-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.3 1.8 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.6.1-3.3 0 0 1-.3 3.3 1.3a11.4 11.4 0 0 1 6 0C16.5 5 17.5 5.3 17.5 5.3c.7 1.7.2 3 .1 3.3.8.8 1.3 1.9 1.3 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shop -->
+      <div class="flex flex-col gap-4">
+        <h4 class="font-bold text-primary-darkest dark:text-white">Shop</h4>
+        <ul class="flex flex-col gap-2 text-sm">
+          <li><a class="hover:text-primary">New Arrivals</a></li>
+          <li><a class="hover:text-primary">Best Sellers</a></li>
+          <li><a class="hover:text-primary">Deals</a></li>
+          <li><a class="hover:text-primary">Electronics</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="flex flex-col gap-4">
+        <h4 class="font-bold text-primary-darkest dark:text-white">Support</h4>
+        <ul class="flex flex-col gap-2 text-sm">
+          <li><a class="hover:text-primary">Help Center</a></li>
+          <li><a class="hover:text-primary">Returns</a></li>
+          <li><a class="hover:text-primary">Shipping Info</a></li>
+          <li><a class="hover:text-primary">Track Order</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="flex flex-col gap-4">
+        <h4 class="font-bold text-primary-darkest dark:text-white">Company</h4>
+        <ul class="flex flex-col gap-2 text-sm">
+          <li><a class="hover:text-primary">About Us</a></li>
+          <li><a class="hover:text-primary">Careers</a></li>
+          <li><a class="hover:text-primary">Privacy Policy</a></li>
+          <li><a class="hover:text-primary">Terms of Service</a></li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 </footer>

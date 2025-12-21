@@ -1,11 +1,13 @@
-<app-header-title [title]="'Popular Products'" />
-
+<div class="flex justify-between">
+  <app-header-title [title]="'product.popular'" />
+  <p class="p-5 cursor-pointer text-primary-darkest/90 dark:text-white/90  text-sm font-medium hover:underline hover:underline-offset-4 flex items-center gap-1">{{"common.viewAll"|translate}}</p>
+</div>
 @if (!allProducts) {
 <app-loading-spinner />
 } @else {
 <section>
-  <div class="grid grid-cols-3">
-    @for ( p of allProducts.slice(0,9); track p._id) {
+  <div class="grid-products">
+    @for ( p of allProducts.slice(2,10); track p._id) {
     <app-product-card [data]="p" />
     }
   </div>

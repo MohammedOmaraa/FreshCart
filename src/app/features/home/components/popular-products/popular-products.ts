@@ -4,10 +4,11 @@ import { HeaderTitle } from "../../../../shared/components/header-title/header-t
 import { ProductService } from '../../../products/services/productService';
 import { IProduct } from '../../../products/interfaces/IAllProducts';
 import {  ProductCard } from "../../../../shared/components/product-card/product-card";
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-popular-products',
-  imports: [LoadingSpinner, HeaderTitle, ProductCard],
+  imports: [LoadingSpinner, HeaderTitle, ProductCard, TranslatePipe],
   templateUrl: './popular-products.html',
   styleUrl: './popular-products.css'
 })

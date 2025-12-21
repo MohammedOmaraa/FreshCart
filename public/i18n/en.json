@@ -163,6 +163,13 @@
     "previous": "Previous",
     "submit": "Submit",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "viewAll": "View All"
+  },
+  "product": {
+    "popular": "Popular Products"
+  },
+  "category": {
+    "title": "Categories"
   }
 }

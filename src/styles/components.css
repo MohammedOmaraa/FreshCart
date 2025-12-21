@@ -1,17 +1,24 @@
- .mat-mdc-select-arrow-wrapper {
-   display: none !important;
- }
+/* select component */
+.mat-mdc-select-arrow-wrapper {
+  display: none !important;
+}
 
- .mat-mdc-form-field-subscript-wrapper {
-   display: none !important;
- }
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
 
 .cdk-overlay-pane {
-   background-color: var(--color-white) !important;
- }
- .dark .cdk-overlay-pane {
-   background-color: var(--color-primary-darkest) !important;
- }
- div.mat-mdc-select-panel {
+  background-color: var(--color-white) !important;
+}
+
+.dark .cdk-overlay-pane {
+  background-color: var(--color-primary-darkest) !important;
+}
+
+div.mat-mdc-select-panel {
   padding: 0 !important;
- }
+}
+
+.mdc-line-ripple::before {
+  display: none;
+}

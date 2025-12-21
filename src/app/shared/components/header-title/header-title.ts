@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header-title',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './header-title.html',
   styleUrl: './header-title.css',
 })
