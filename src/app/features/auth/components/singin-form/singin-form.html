@@ -16,15 +16,16 @@
       <!-- Email -->
       <app-auth-input formControlName="email" [controlName]="'Email'" [control]="signInForm.get('email')"
         [labelForId]="'email'" [labelText]="'auth.email'|translate" [inputType]="'email'"
-        [inputPlaceholder]="'auth.emailPlaceholder'|translate" [inputIcon]="mailIcon" [inputIcon]="mailIcon" [errorMessages]="{
+        [inputPlaceholder]="'auth.emailPlaceholder'|translate" [inputIcon]="mailIcon" [inputIcon]="mailIcon"
+        [errorMessages]="{
         required: 'Email is required',
         email: 'Invalid email format'
       }" />
 
       <!-- Password -->
       <app-auth-input formControlName="password" [controlName]="'Password'" [control]="signInForm.get('password')"
-        [labelForId]="'password'" [labelText]="'auth.emailPlaceholder'|translate" [inputType]="'password'" [inputPlaceholder]="'•••••••'"
-        [inputIcon]="lockKeyholeIcon" [errorMessages]="{
+        [labelForId]="'password'" [labelText]="'auth.password'|translate" [inputType]="'password'"
+        [inputPlaceholder]="'auth.passwordPlaceholder'|translate" [inputIcon]="lockKeyholeIcon" [errorMessages]="{
       required: 'Password is required',
       pattern: 'Minimum eight characters and must contain uppercase, lowercase, number & special char'
     }" />

@@ -26,7 +26,7 @@
       <!-- Email -->
       <app-auth-input formControlName="email" [controlName]="'Email'" [control]=" signUpForm.get('email')"
         [labelText]="'auth.email'|translate" [inputType]="'email'"
-        [inputPlaceholder]="'auth.emailPlaceholder'|translate" [inputIcon]="mailIcon" [errorMessages]="{
+        [inputPlaceholder]="'auth.signup.emailPlaceholder'|translate" [inputIcon]="mailIcon" [errorMessages]="{
         required: 'Email is required',
         email: 'Invalid email format'
       }" />
