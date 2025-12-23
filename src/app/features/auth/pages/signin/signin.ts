@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { SinginForm } from "../../components/singin-form/singin-form";
-import { RouterLink } from '@angular/router';
+import { SinginForm } from '../../components/singin-form/singin-form';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signin',
-  imports: [SinginForm, RouterLink],
+  imports: [SinginForm, TranslatePipe],
   templateUrl: './signin.html',
-  styleUrl: './signin.css'
+  styleUrl: './signin.css',
 })
-export class Signin {
-
-}
+export class Signin {}

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { SingupForm } from '../../components/singup-form/singup-form';
-import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup',
-  imports: [SingupForm, RouterLink],
+  imports: [SingupForm, TranslatePipe],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })

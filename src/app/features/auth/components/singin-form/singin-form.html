@@ -1,85 +1,73 @@
-<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-  {{ signInForm.errors }}
-  <div class="px-12 pb-10">
-    <!-- (input filed): email -->
-    <div class="w-full mb-2">
-      <div class="flex flex-col">
-        <label for="email">User Email</label
-        ><input
-          formControlName="email"
-          id="email"
-          type="email"
-          placeholder="Enter Your Email"
-          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
-        />
-      </div>
-      <!-- Error Handling -->
-      @let userEmail = signInForm.get('email'); @if
-      (userEmail?.touched&&userEmail?.errors) {
-      <app-error-message>
-        @if (userEmail?.getError('required')){
-        <li>Email is required</li>
-        } @else if (userEmail?.getError('email')) {
+<div class="max-w-lg mx-auto">
+  <div
+    class="p-4 lg:p-8 border-2 border-transparent dark:border-primary-dark duration-300 hover:border-primary/20 dark:hover:border-white/40 hover:shadow-lg hover:shadow-primary/50 dark:hover:shadow-white/50 rounded-4xl bg-white dark:bg-primary-darker">
 
-        <li>Invalid Email</li>
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-primary-darkest mb-2 tracking-tight dark:text-white">
+        {{'auth.signin.welcome'|translate}}</h1>
+      <p class="text-primary-darker/70 text-base font-medium dark:text-white/70">{{'auth.signin.subtitle'|translate}}
+      </p>
+    </div>
 
+    <!-- Angular Reactive Form -->
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
+
+      <!-- Email -->
+      <app-auth-input formControlName="email" [controlName]="'Email'" [control]="signInForm.get('email')"
+        [labelForId]="'email'" [labelText]="'auth.email'|translate" [inputType]="'email'"
+        [inputPlaceholder]="'auth.emailPlaceholder'|translate" [inputIcon]="mailIcon" [inputIcon]="mailIcon" [errorMessages]="{
+        required: 'Email is required',
+        email: 'Invalid email format'
+      }" />
+
+      <!-- Password -->
+      <app-auth-input formControlName="password" [controlName]="'Password'" [control]="signInForm.get('password')"
+        [labelForId]="'password'" [labelText]="'auth.emailPlaceholder'|translate" [inputType]="'password'" [inputPlaceholder]="'•••••••'"
+        [inputIcon]="lockKeyholeIcon" [errorMessages]="{
+      required: 'Password is required',
+      pattern: 'Minimum eight characters and must contain uppercase, lowercase, number & special char'
+    }" />
+
+
+      <!-- Submit Button -->
+      <button [disabled]="isLoading || signInForm.invalid" type="submit"
+        class="mt-4 py-3.5 border border-transparent rounded-full shadow-lg shadow-primary/40 dark:shadow-white/20 text-sm font-bold text-white bg-primary dark:bg-primary hover:bg-primary-hover transition-all transform disabled:bg-primary-darker/70 dark:disabled:bg-white/50 disabled:cursor-not-allowed cursor-pointer">
+        {{'auth.signin.submit' | translate}}
+        @if (isLoading) {
+        <i class="fas fa-spinner fa-spin ml-2"></i>
         }
-      </app-error-message>
-      }
-    </div>
+      </button>
 
-    <!-- (input filed): password -->
-    <div class="w-full mb-2">
-      <div class="flex flex-col">
-        <label for="password">User Password</label
-        ><input
-          formControlName="password"
-          id="password"
-          type="password"
-          placeholder="Enter Your Password"
-          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
-        />
+      <!--  Forgot Password -->
+      <div class="flex flex-col justify-between mt-1">
+        <a routerLink="/"
+          class="cursor-pointer text-sm font-medium text-primary-darker dark:text-primary transition-colors hover:underline">
+          {{'auth.signin.forgot' | translate}}
+        </a>
+        <a class="text-sm text-primary-darker dark:text-white">
+          {{'auth.signin.noAccount' | translate}} <span routerLink="/signup"
+            class="cursor-pointer font-medium text-primary hover:underline">{{'auth.signup.submit' | translate}}</span>
+        </a>
       </div>
-      <!-- Error Handling -->
-      @let userPassword = signInForm.get('password'); @if
-      (userPassword?.touched&&userPassword?.errors) {
-      <app-error-message>
-        @if (userPassword?.getError('required')){
-        <li>This is required</li>
-        } @else if (userPassword?.getError('pattern')) {
-        <li>
-          Minimum eight characters, at least one uppercase letter, one lowercase
-          letter and one number:
-        </li>
-        }
-      </app-error-message>
-      }
-    </div>
 
-    <button
-      [disabled]="isLoading || signInForm.invalid"
-      type="submit"
-      class="mx-auto disabled:bg-green-500 disabled:cursor-auto block w-1/3 py-2 my-8 rounded-full bg-main text-gray-100 cursor-pointer focus:outline-none"
-    >
-      Submit @if (isLoading) {
-      <i class="fas fa-spinner fa-spin"></i>
+      <!-- error message -->
+      @if (errorMessage) {
+      <div
+        class="text-red-800 rounded-lg bg-red-100/80 border-l-4 dark:bg-primary-darkest/80 dark:text-red-400 border-red-600 p-3"
+        role="alert">
+        <p class="font-medium">{{ errorMessage }}</p>
+      </div>
       }
-    </button>
 
-    @if (errorMessage) {
-    <div
-      class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
-      role="alert"
-    >
-      <p class="font-bold">{{ errorMessage }}</p>
-    </div>
-    } @if (successMessage) {
-    <div
-      class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4"
-      role="alert"
-    >
-      <p class="font-bold">Login {{ successMessage }}</p>
-    </div>
-    }
+      <!-- success message -->
+      @if (successMessage) {
+      <div
+        class="text-green-700 rounded-lg bg-green-100/80 border-l-4 dark:bg-primary-darkest/80 dark:text-green-700 border-green-700 p-3"
+        role="alert">
+        <p class="font-medium">Login {{ successMessage }}</p>
+      </div>
+      }
+    </form>
   </div>
-</form>
+</div>

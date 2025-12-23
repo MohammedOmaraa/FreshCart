@@ -1,171 +1,98 @@
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  {{ signUpForm.errors }}
-  <div class="px-12 pb-10">
-    <!-- (input filed): name -->
-    <div class="w-full mb-2">
-      <div class="flex flex-col">
-        <label for="name">User Name</label>
-        <input
-          formControlName="name"
-          id="name"
-          type="text"
-          placeholder="Enter Your Name"
-          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
-        />
-      </div>
-      <!-- Error Handling -->
-      @let userName = signUpForm.get('name'); @if
-      (userName?.touched&&userName?.errors) {
-      <app-error-message>
-        @if (userName?.getError('required')){
-        <li>This is required</li>
-        } @else if (userName?.getError('minlength')) {
+<div class="max-w-lg mx-auto">
+  <div
+    class="p-4 lg:p-8 border-2 border-transparent dark:border-primary-dark duration-300 hover:border-primary/20 dark:hover:border-white/40 hover:shadow-lg hover:shadow-primary/50 dark:hover:shadow-white/50 rounded-4xl bg-white dark:bg-primary-darker">
 
-        <li>At least 8 characters (and up to 20 characters)</li>
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-primary-darkest mb-2 tracking-tight dark:text-white">
+        {{'auth.signup.title'|translate}}</h1>
+      <p class="text-primary-darker/70 text-base font-medium dark:text-white/70">{{'auth.signup.subtitle'|translate}}
+      </p>
+    </div>
 
-        } @else if (userName?.getError('maxlength')) {
-        <li>At least 8 characters (and up to 20 characters)</li>
+    <!-- Angular Reactive Form -->
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
+
+      <!-- Name -->
+      <app-auth-input formControlName="name" [control]="signUpForm.get('name')" [controlName]="'Name'"
+        [labelForId]="'name'" [labelText]="'auth.name'|translate" [inputType]="'text'"
+        [inputPlaceholder]="'auth.namePlaceholder'|translate" [inputIcon]="userIcon" [errorMessages]="{
+            required: 'Name is required',
+            minlength: 'Name must be at least 3 characters',
+            maxlength: 'Name must be less than 20 characters'
+          }">
+      </app-auth-input>
+
+      <!-- Email -->
+      <app-auth-input formControlName="email" [controlName]="'Email'" [control]=" signUpForm.get('email')"
+        [labelText]="'auth.email'|translate" [inputType]="'email'"
+        [inputPlaceholder]="'auth.emailPlaceholder'|translate" [inputIcon]="mailIcon" [errorMessages]="{
+        required: 'Email is required',
+        email: 'Invalid email format'
+      }" />
+
+      <!-- Password -->
+      <app-auth-input formControlName="password" [control]="signUpForm.get('password')" [controlName]="'Password'"
+        [labelForId]="'password'" [labelText]="'auth.password'|translate" [inputType]="'password'"
+        [inputPlaceholder]="'auth.passwordPlaceholder'|translate" [inputIcon]="lockKeyholeIcon" [errorMessages]="{
+      required: 'Password is required',
+      pattern: 'Minimum eight characters and must contain uppercase, lowercase, number & special char'
+    }">
+      </app-auth-input>
+
+      <!-- Re-Password -->
+      <app-auth-input formControlName="rePassword" [control]="signUpForm.get('rePassword')"
+        [controlName]="'Re-Password'" [labelForId]="'rePassword'" [labelText]="'auth.rePassword'|translate"
+        [inputType]="'password'" [inputPlaceholder]="'auth.rePasswordPlaceholder'|translate"
+        [inputIcon]="rotateCcwKeyIcon" [errorMessages]="{
+      required: 'Confirm password is required',
+      missMatch: 'Passwords do not match'
+    }">
+      </app-auth-input>
+
+      <!-- Phone -->
+      <app-auth-input formControlName="phone" [control]="signUpForm.get('phone')" [controlName]="'Phone'"
+        [labelForId]="'phone'" [labelText]="'auth.phone'|translate" [inputType]="'text'"
+        [inputPlaceholder]="'auth.phonePlaceholder'|translate" [inputIcon]="phoneIcon" [errorMessages]="{
+      required: 'Phone is required',
+      pattern: 'Invalid Egyptian phone number'
+    }">
+      </app-auth-input>
+
+      <!-- Submit Button -->
+      <button [disabled]="isLoading || signUpForm.invalid" type="submit"
+        class="mt-4 py-3.5 border border-transparent rounded-full shadow-lg shadow-primary/40 dark:shadow-white/20 text-sm font-bold text-white bg-primary dark:bg-primary hover:bg-primary-hover transition-all transform disabled:bg-primary-darker/70 dark:disabled:bg-white/50 disabled:cursor-not-allowed cursor-pointer">
+        {{'auth.signup.submit'|translate}}
+        @if (isLoading) {
+        <i class="fas fa-spinner fa-spin ml-2"></i>
         }
-      </app-error-message>
-      }
-    </div>
+      </button>
 
-    <!-- (input filed): email -->
-    <div class="w-full mb-2">
-      <div class="flex flex-col">
-        <label for="email">User Email</label
-        ><input
-          formControlName="email"
-          id="email"
-          type="email"
-          placeholder="Enter Your Email"
-          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
-        />
+      <!-- signin -->
+      <div class="flex items-center justify-between mt-1">
+        <a class="text-sm text-primary-darker dark:text-white">
+          {{'auth.signup.haveAccount'|translate}} <span routerLink="/signin"
+            class="cursor-pointer font-medium text-primary hover:underline">{{'auth.signin.submit'|translate}}</span>
+        </a>
       </div>
-      <!-- Error Handling -->
-      @let userEmail = signUpForm.get('email'); @if
-      (userEmail?.touched&&userEmail?.errors) {
-      <app-error-message>
-        @if (userEmail?.getError('required')){
-        <li>Email is required</li>
-        } @else if (userEmail?.getError('email')) {
 
-        <li>Invalid Email</li>
-
-        }
-      </app-error-message>
-      }
-    </div>
-
-    <!-- (input filed): password -->
-    <div class="w-full mb-2">
-      <div class="flex flex-col">
-        <label for="password">User Password</label
-        ><input
-          formControlName="password"
-          id="password"
-          type="password"
-          placeholder="Enter Your Password"
-          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
-        />
+      <!-- error message -->
+      @if (errorMessage) {
+      <div
+        class="text-red-800 rounded-lg bg-red-100/80 border-l-4 dark:bg-primary-darkest/80 dark:text-red-400 border-red-600 p-3"
+        role="alert">
+        <p class="font-medium">{{ errorMessage }}</p>
       </div>
-      <!-- Error Handling -->
-      @let userPassword = signUpForm.get('password'); @if
-      (userPassword?.touched&&userPassword?.errors) {
-      <app-error-message>
-        @if (userPassword?.getError('required')){
-        <li>This is required</li>
-        } @else if (userPassword?.getError('pattern')) {
-        <li>
-          Minimum eight characters, at least one uppercase letter, one lowercase
-          letter and one number:
-        </li>
-        }
-      </app-error-message>
       }
-    </div>
 
-    <!-- (input filed): rePassword -->
-    <div class="w-full mb-2">
-      <div class="flex flex-col">
-        <label for="rePassword">User Re-password</label
-        ><input
-          formControlName="rePassword"
-          id="rePassword"
-          type="password"
-          placeholder="Enter Your Re-Password"
-          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
-        />
+      <!-- success message -->
+      @if (successMessage) {
+      <div
+        class="text-green-700 rounded-lg bg-green-100/80 border-l-4 dark:bg-primary-darkest/80 dark:text-green-700 border-green-700 p-3"
+        role="alert">
+        <p class="font-medium">Login {{ successMessage }}</p>
       </div>
-      <!-- Error Handling -->
-      @let userRePassword = signUpForm.get('rePassword');
-      @if(userRePassword?.touched&&userRePassword?.errors) {
-      <app-error-message>
-        @if (userRePassword?.getError('required')){
-        <li>This is required</li>
-        } @else if (userRePassword?.getError('pattern')) {
-        <li>
-          Minimum eight characters, at least one uppercase letter, one lowercase
-          letter, one number and one special character.
-        </li>
-        }@else if (userRePassword?.getError('missMatch')) {
-        <li>Passwords do not match</li>
-        }
-      </app-error-message>
       }
-    </div>
-
-    <!-- (input filed): phone -->
-    <div class="w-full mb-2">
-      <div class="flex flex-col">
-        <label for="phone">User Phone</label
-        ><input
-          formControlName="phone"
-          id="phone"
-          type="tel"
-          placeholder="Enter Your Phone"
-          class="w-full border rounded px-3 py-2 text-gray-700 focus:outline-none"
-        />
-      </div>
-      <!-- Error Handling -->
-      @let userPhone = signUpForm.get('phone'); @if
-      (userPhone?.touched&&userPhone?.errors) {
-      <app-error-message>
-        @if (userPhone?.getError('required')){
-        <li>This is required</li>
-        } @else if (userPhone?.getError('pattern')) {
-        <li>Invalid Phone</li>
-        }
-      </app-error-message>
-      }
-    </div>
-
-    <button
-      [disabled]="isLoading || signUpForm.invalid"
-      type="submit"
-      class="mx-auto disabled:bg-green-500 disabled:cursor-auto block w-1/3 py-2 my-8 rounded-full bg-main text-gray-100 cursor-pointer focus:outline-none"
-    >
-      Submit
-      @if (isLoading) {
-        <i class="fas fa-spinner fa-spin"></i>
-      }
-    </button>
-
-    @if (errorMessage) {
-    <div
-      class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
-      role="alert"
-    >
-      <p class="font-bold">{{ errorMessage }}</p>
-    </div>
-    } @if (successMessage) {
-    <div
-      class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4"
-      role="alert"
-    >
-      <p class="font-bold">Login {{ successMessage }}</p>
-      <p>Will navigate after {{timer}}</p>
-    </div>
-    }
+    </form>
   </div>
-</form>
+</div>

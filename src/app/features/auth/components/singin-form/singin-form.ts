@@ -2,21 +2,28 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormGroup,
-  FormControl,
   Validators,
   ReactiveFormsModule,
   FormBuilder,
 } from '@angular/forms';
-import {  timer } from 'rxjs';
-import { Router } from '@angular/router';
-import { ErrorMessage } from '../error-message/error-message';
+import { timer } from 'rxjs';
+import { Router, RouterLink } from '@angular/router';
 import { ISignInData, ISignInResponse } from '../../interfaces/ISignInUser';
 import { toast } from 'ngx-sonner';
 import { AuthServices } from '../../services/auth.service';
+import { Mail, LockKeyhole, LucideAngularModule } from 'lucide-angular';
+import { AuthInput } from '../auth-input/auth-input';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-singin-form',
-  imports: [ReactiveFormsModule, ErrorMessage],
+  imports: [
+    ReactiveFormsModule,
+    LucideAngularModule,
+    AuthInput,
+    RouterLink,
+    TranslatePipe,
+  ],
   templateUrl: './singin-form.html',
   styleUrl: './singin-form.css',
 })
@@ -31,6 +38,8 @@ export class SinginForm implements OnInit {
   successMessage: string | undefined;
   isLoading: boolean = false;
   signInForm!: FormGroup;
+  readonly mailIcon = Mail;
+  readonly lockKeyholeIcon = LockKeyhole;
 
   ngOnInit(): void {
     this.initForm();

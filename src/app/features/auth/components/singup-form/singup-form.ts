@@ -11,11 +11,14 @@ import { interval, Subscription, take } from 'rxjs';
 import { AuthServices } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ISignUpData, ISignUpResponse } from '../../interfaces/ISignUpUser';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthInput } from '../auth-input/auth-input';
+import { User, Mail, Phone, LockKeyhole, RotateCcwKey } from 'lucide-angular';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-singup-form',
-  imports: [ReactiveFormsModule, ErrorMessage],
+  imports: [ReactiveFormsModule, AuthInput, RouterLink, TranslatePipe],
   templateUrl: './singup-form.html',
   styleUrl: './singup-form.css',
 })
@@ -32,6 +35,11 @@ export class SingupForm {
   timer: number = 3;
   signUpForm!: FormGroup;
   private subscriptions = new Subscription();
+  readonly userIcon = User;
+  readonly mailIcon = Mail;
+  readonly lockKeyholeIcon = LockKeyhole;
+  readonly phoneIcon = Phone;
+  readonly rotateCcwKeyIcon = RotateCcwKey;
 
   ngOnInit(): void {
     this.initForm();

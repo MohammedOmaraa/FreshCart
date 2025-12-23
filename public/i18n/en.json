@@ -13,10 +13,26 @@
     "settings": "Settings"
   },
   "auth": {
+    "name": "User Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "name@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "rePassword": "Confirm Password",
+    "rePasswordPlaceholder": "Re-enter your password",
+    "phone": "Phone Number",
+    "phonePlaceholder": "01XXXXXXXXX",
     "signin": {
+      "hero": {
+        "badge": "New Collection",
+        "title": "Elevate Your Lifestyle",
+        "subtitle": "Join our exclusive community for premium access to FreshCart goods."
+      },
+      "welcome": "Welcome Back",
       "title": "Sign In",
-      "subtitle": "Welcome back",
-      "email": "Email",
+      "subtitle": "Please sign in to continue shopping",
+      "email": "Email Address",
       "emailPlaceholder": "Enter your email",
       "password": "Password",
       "passwordPlaceholder": "Enter your password",
@@ -32,8 +48,13 @@
       "withGithub": "Sign in with GitHub"
     },
     "signup": {
+      "hero": {
+        "badge": "Shop Everything",
+        "title": "Style, Tech & More in One Place.",
+        "subtitle": "Discover the latest collections in fashion, cutting-edge electronics, and essentials for your little ones"
+      },
       "title": "Sign Up",
-      "subtitle": "Start your journey with us",
+      "subtitle": "Enter your details below to join FreshCart.",
       "firstName": "First Name",
       "firstNamePlaceholder": "Enter your first name",
       "lastName": "Last Name",
