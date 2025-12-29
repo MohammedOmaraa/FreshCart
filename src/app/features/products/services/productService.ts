@@ -1,23 +1,41 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { BaseHttp } from '../../../core/services/http/baseHttp';
 import { AppApis } from '../../../core/constants/appApis';
-import { IAllProductsApiRes } from '../interfaces/IAllProducts';
+import { IAllProductsApiRes, IProduct } from '../interfaces/IAllProducts';
 import { Observable } from 'rxjs';
-import { ISingleProductApiRes } from '../interfaces/ISingleProduct';
+import {
+  ISingleProduct,
+  ISingleProductApiRes,
+} from '../interfaces/ISingleProduct';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private readonly _BaseHttp = inject(BaseHttp);
+  private readonly http = inject(BaseHttp);
 
-  getAllProducts(): Observable<IAllProductsApiRes> {
-    return this._BaseHttp.get<IAllProductsApiRes>(AppApis.AllProductsURL);
+  // Signals (State)
+  private readonly productsSignal = signal<IProduct[] | null>(null);
+  private readonly productSignal = signal<ISingleProduct | null>(null);
+
+  readonly products = this.productsSignal.asReadonly();
+  readonly product = this.productSignal.asReadonly();
+
+  getAllProducts(): void {
+    this.http
+      .get<IAllProductsApiRes>(AppApis.AllProductsURL)
+      .subscribe((res) => {
+        this.productsSignal.set(res.data);
+      });
   }
 
-  getSingleProduct(productId: string): Observable<ISingleProductApiRes> {
-    return this._BaseHttp.get<ISingleProductApiRes>(
-      `${AppApis.SingleProductsURL}/${productId}`
-    );
+
+  getSingleProduct(productId: string): void {
+    this.productSignal.set(null);
+    this.http
+      .get<ISingleProductApiRes>(`${AppApis.SingleProductsURL}/${productId}`)
+      .subscribe(res => {
+        this.productSignal.set(res.data);
+      });
   }
 }

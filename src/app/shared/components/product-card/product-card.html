@@ -5,11 +5,10 @@
     <img class="w-full scale-125 duration-300 group-hover:scale-y-100" [src]="data.imageCover" [alt]="data.title" />
 
     <!-- add to fav -->
-    <a
-      class="cursor-pointer group/fav absolute w-8 h-8 flex items-center justify-center hover:bg-primary top-6 end-4 rounded-full bg-white duration-100 dark:bg-primary-dark">
-      <lucide-angular [img]="HeartIcon"
-        class="text-primary-darker group-hover/fav:text-white duration-100 dark:text-white"></lucide-angular>
-    </a>
+      <button
+          class="cursor-pointer absolute top-4 right-4 size-8 rounded-full bg-white dark:bg-slate-800 shadow-md border border-slate-100 flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-all">
+          <lucide-angular [img]="HeartIcon" class="size-5"></lucide-angular>
+      </button>
   </div>
 
   <div class="product-details mt-3">

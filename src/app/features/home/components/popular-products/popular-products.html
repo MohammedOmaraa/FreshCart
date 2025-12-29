@@ -1,16 +1,17 @@
 <div class="flex justify-between">
   <app-header-title [title]="'product.popular'" />
-  <p class="p-5 cursor-pointer text-primary-darkest/90 dark:text-white/90  text-sm font-medium hover:underline hover:underline-offset-4 flex items-center gap-1">{{"common.viewAll"|translate}}</p>
+  <p
+    class="p-5 cursor-pointer text-primary-darkest/90 dark:text-white/90  text-sm font-medium hover:underline hover:underline-offset-4 flex items-center gap-1">
+    {{"common.viewAll"|translate}}</p>
 </div>
-@if (!allProducts) {
-<app-loading-spinner />
-} @else {
+@if (productService.products()) {
 <section>
   <div class="grid-products">
-    @for ( p of allProducts.slice(2,10); track p._id) {
+    @for ( p of productService.products()!.slice(2,10); track p._id) {
     <app-product-card [data]="p" />
     }
   </div>
 </section>
-
+}@else {
+<app-loading-spinner />
 }

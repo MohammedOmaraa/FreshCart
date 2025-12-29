@@ -1,14 +1,14 @@
 <app-header-title [title]="'All Products'" />
 
-@if (!allProducts) {
-<app-loading-spinner />
-} @else {
+
+@if (productService.products()) {
 <section>
   <div class="grid-products">
-    @for ( p of allProducts; track p._id) {
+    @for ( p of productService.products(); track p._id) {
     <app-product-card [data]="p" />
     }
   </div>
 </section>
-
+}@else {
+<app-loading-spinner />
 }

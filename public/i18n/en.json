@@ -188,7 +188,14 @@
     "viewAll": "View All"
   },
   "product": {
-    "popular": "Popular Products"
+    "popular": "Popular Products",
+    "reviews": "reviews",
+    "available": "Available:",
+    "addToCart": "Add to Cart",
+    "category": "Category:",
+    "brand": "Brand:",
+    "sold": "Sold:",
+    "addedOn": "Added on:"
   },
   "category": {
     "title": "Categories"
