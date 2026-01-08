@@ -13,13 +13,13 @@ export const CartApi = {
    * Endpoint to update the quantity of a product in the cart
    * @param id - The ID of the product to update
    */
-  Update: (id: string) => `${BASE}${id}`,
+  Update: (id: string) => `${BASE}/${id}`,
 
   /**
    * Endpoint to delete a product from the cart
    * @param id - The ID of the product to delete
    */
-  Delete: (id: string) => `${BASE}${id}`,
+  Delete: (id: string) => `${BASE}/${id}`,
 
   /** Endpoint to clear the entire cart */
   Clear: BASE,

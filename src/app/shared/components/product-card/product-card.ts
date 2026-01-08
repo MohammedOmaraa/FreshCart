@@ -18,18 +18,10 @@ export class ProductCard {
   ShoppingCartIcon  = ShoppingCart
 
   // Inject Services
-  private readonly _CartService = inject(CartService);
+  private readonly cartService = inject(CartService);
 
   addProductToCart(productId: string): void {
     this.isLoading = true;
-    this._CartService.addProduct(productId).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.isLoading = false;
-      },
-      error: () => {
-        this.isLoading = false;
-      },
-    });
+    this.cartService.addProduct(productId)
   }
 }

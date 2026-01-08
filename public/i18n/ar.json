@@ -199,5 +199,27 @@
   },
   "category": {
     "title": "الفئات"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "itemsCount": "{{count}} عناصر في سلتك",
+    "clear": "إفراغ السلة",
+    "continueShopping": "متابعة التسوق",
+    "startShopping": "ابدأ التسوق",
+    "empty": "سلة التسوق فارغة",
+    "emptyHist": "يبدو أنك لم تضف أي شيء إلى سلة التسوق بعد. استكشف منتجاتنا اليوم!",
+    "removeItem": "حذف المنتج",
+    "unitPrice": "سعر الوحدة",
+    "total": "الإجمالي",
+    "proceedToCheckout": "إتمام الشراء"
+  },
+  "orderSummary": {
+    "title": "ملخص الطلب",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "تكلفة الشحن",
+    "tax": "الضريبة",
+    "promoCode": "كود الخصم",
+    "apply": "تطبيق",
+    "total": "الإجمالي"
   }
 }

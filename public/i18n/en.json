@@ -199,5 +199,27 @@
   },
   "category": {
     "title": "Categories"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "itemsCount": "{{count}} items in your cart",
+    "clear": "Clear Cart",
+    "continueShopping": "Continue Shopping",
+    "startShopping": "Start Shopping",
+    "empty": "Your cart is empty",
+    "emptyHist": "Looks like you haven't added anything to your cart yet. Explore our products today!",
+    "removeItem": "Remove item",
+    "unitPrice": "Unit Price",
+    "total": "Total",
+    "proceedToCheckout": "Proceed to Checkout"
+  },
+  "orderSummary": {
+    "title": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping estimate",
+    "tax": "Tax",
+    "promoCode": "Promo code",
+    "apply": "Apply",
+    "total": "Total"
   }
 }
