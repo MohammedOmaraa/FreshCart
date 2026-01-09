@@ -1,0 +1,21 @@
+<div class="space-y-1.5">
+    <!-- Label -->
+    <label [for]="labelForId()" [class]="labelClasses()"
+        class="block text-sm font-medium text-primary-darkest ml-2 dark:text-white">
+        {{ labelText() }}
+    </label>
+
+    <!-- Control -->
+    <ng-content></ng-content>
+
+    <!-- Errors -->
+    @if (control()?.touched && control()?.errors) {
+    <app-error-message>
+        @for (err of (control()?.errors | keyvalue); track err.key) {
+        <li>
+            {{ errorMessages()[err.key] || (controlName() + ' is invalid') }}
+        </li>
+        }
+    </app-error-message>
+    }
+</div>

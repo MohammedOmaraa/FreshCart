@@ -1,0 +1,19 @@
+<app-form-field [labelForId]="labelForId()" [labelText]="labelText()" [control]="control()"
+    [controlName]="controlName()" [errorMessages]="errorMessages()">
+
+
+    <div class="relative group mb-0">
+
+
+        <textarea [id]="labelForId()" [rows]="rows()" [value]="value" [disabled]="disabled"
+            (input)="onChange($any($event.target).value)" (blur)="onTouched()" class="form-field resize-none"
+            [class]="customClasses()" [placeholder]="placeholder()"></textarea>
+
+        <!-- icon -->
+        <div
+            class="absolute top-3.5 start-0 ps-4 flex items-center pointer-events-none text-primary-dark/80 dark:text-white/80 group-focus-within:text-primary dark:group-focus-within:text-white/80 transition-colors">
+            <lucide-angular [img]="icon()" class="text-xl"></lucide-angular>
+        </div>
+
+    </div>
+</app-form-field>

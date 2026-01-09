@@ -1,0 +1,27 @@
+<app-form-field [labelForId]="labelForId()" [labelText]="labelText()" [control]="control()"
+    [controlName]="controlName()" [errorMessages]="errorMessages()">
+
+    <div class="relative group">
+        <input spellcheck='false' [id]="labelForId()" [type]="actualInputType" [value]="value" [disabled]="disabled"
+            (input)="onChange($any($event.target).value)" (blur)="onTouched()" class="form-field"
+            [placeholder]="placeholder()" [class]="customClasses()" [class.pe-12]="type() =='password'" />
+
+        <!-- icon -->
+        <div
+            class="absolute inset-y-0 start-0 ps-4 flex items-center pointer-events-none text-primary-dark/80 dark:text-white/80 group-focus-within:text-primary dark:group-focus-within:text-white/80 transition-colors">
+            <lucide-angular [img]="icon()" class="text-xl"></lucide-angular>
+        </div>
+
+        <!-- Password toggle icon -->
+        @if (type() === 'password') {
+        <button type="button" (click)="togglePasswordVisibility()" class="absolute inset-y-0 end-0 pe-4 flex items-center
+           text-primary-dark/70 hover:text-primary transition-colors">
+
+            <lucide-angular [img]="isPasswordVisible ?  eyeIcon : eyeOffIcon" class="text-xl">
+            </lucide-angular>
+
+        </button>
+        }
+
+    </div>
+</app-form-field>
