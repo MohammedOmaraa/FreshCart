@@ -14,18 +14,17 @@
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
 
       <!-- Email -->
-      <app-auth-input formControlName="email" [controlName]="'Email'" [control]="signInForm.get('email')"
-        [labelForId]="'email'" [labelText]="'auth.email'|translate" [inputType]="'email'"
-        [inputPlaceholder]="'auth.emailPlaceholder'|translate" [inputIcon]="mailIcon" [inputIcon]="mailIcon"
-        [errorMessages]="{
+      <app-input formControlName="email" [controlName]="'Email'" [control]="signInForm.get('email')"
+        [labelForId]="'email'" [labelText]="'auth.email'|translate" [type]="'email'"
+        [placeholder]="'auth.emailPlaceholder'|translate" [icon]="mailIcon" [errorMessages]="{
         required: 'Email is required',
         email: 'Invalid email format'
       }" />
 
       <!-- Password -->
-      <app-auth-input formControlName="password" [controlName]="'Password'" [control]="signInForm.get('password')"
-        [labelForId]="'password'" [labelText]="'auth.password'|translate" [inputType]="'password'"
-        [inputPlaceholder]="'auth.passwordPlaceholder'|translate" [inputIcon]="lockKeyholeIcon" [errorMessages]="{
+      <app-input formControlName="password" [controlName]="'Password'" [control]="signInForm.get('password')"
+        [labelForId]="'password'" [labelText]="'auth.password'|translate" [type]="'password'"
+        [placeholder]="'auth.passwordPlaceholder'|translate" [icon]="lockKeyholeIcon" [errorMessages]="{
       required: 'Password is required',
       pattern: 'Minimum eight characters and must contain uppercase, lowercase, number & special char'
     }" />

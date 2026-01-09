@@ -221,5 +221,33 @@
     "promoCode": "كود الخصم",
     "apply": "تطبيق",
     "total": "الإجمالي"
+  },
+  "checkout": {
+    "title": "إتمام الشراء",
+    "steps": {
+      "shipping": "بيانات الشحن",
+      "payment": "طريقة الدفع"
+    },
+    "form": {
+      "city": {
+        "label": "المدينة",
+        "placeholder": "أدخل مدينتك"
+      },
+      "phone": {
+        "label": "رقم الهاتف",
+        "placeholder": "01XXXXXXXXX"
+      },
+      "address": {
+        "label": "العنوان",
+        "placeholder": "أدخل تفاصيل العنوان"
+      }
+    },
+    "paymentMethod": {
+      "cash": "الدفع عند الاستلام",
+      "online": "الدفع الإلكتروني"
+    },
+    "actions": {
+      "confirm": "تأكيد الطلب"
+    }
   }
 }

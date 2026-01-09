@@ -14,50 +14,49 @@
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
 
       <!-- Name -->
-      <app-auth-input formControlName="name" [control]="signUpForm.get('name')" [controlName]="'Name'"
-        [labelForId]="'name'" [labelText]="'auth.name'|translate" [inputType]="'text'"
-        [inputPlaceholder]="'auth.namePlaceholder'|translate" [inputIcon]="userIcon" [errorMessages]="{
+      <app-input formControlName="name" [control]="signUpForm.get('name')" [controlName]="'Name'" [labelForId]="'name'"
+        [labelText]="'auth.name'|translate" [type]="'text'" [placeholder]="'auth.namePlaceholder'|translate"
+        [icon]="userIcon" [errorMessages]="{
             required: 'Name is required',
             minlength: 'Name must be at least 3 characters',
             maxlength: 'Name must be less than 20 characters'
           }">
-      </app-auth-input>
+      </app-input>
 
       <!-- Email -->
-      <app-auth-input formControlName="email" [controlName]="'Email'" [control]=" signUpForm.get('email')"
-        [labelText]="'auth.email'|translate" [inputType]="'email'"
-        [inputPlaceholder]="'auth.signup.emailPlaceholder'|translate" [inputIcon]="mailIcon" [errorMessages]="{
+      <app-input formControlName="email" [controlName]="'Email'" [control]=" signUpForm.get('email')"
+        [labelText]="'auth.email'|translate" [type]="'email'" [placeholder]="'auth.signup.emailPlaceholder'|translate"
+        [icon]="mailIcon" [errorMessages]="{
         required: 'Email is required',
         email: 'Invalid email format'
       }" />
 
       <!-- Password -->
-      <app-auth-input formControlName="password" [control]="signUpForm.get('password')" [controlName]="'Password'"
-        [labelForId]="'password'" [labelText]="'auth.password'|translate" [inputType]="'password'"
-        [inputPlaceholder]="'auth.passwordPlaceholder'|translate" [inputIcon]="lockKeyholeIcon" [errorMessages]="{
+      <app-input formControlName="password" [control]="signUpForm.get('password')" [controlName]="'Password'"
+        [labelForId]="'password'" [labelText]="'auth.password'|translate" [type]="'password'"
+        [placeholder]="'auth.passwordPlaceholder'|translate" [icon]="lockKeyholeIcon" [errorMessages]="{
       required: 'Password is required',
       pattern: 'Minimum eight characters and must contain uppercase, lowercase, number & special char'
     }">
-      </app-auth-input>
+      </app-input>
 
       <!-- Re-Password -->
-      <app-auth-input formControlName="rePassword" [control]="signUpForm.get('rePassword')"
-        [controlName]="'Re-Password'" [labelForId]="'rePassword'" [labelText]="'auth.rePassword'|translate"
-        [inputType]="'password'" [inputPlaceholder]="'auth.rePasswordPlaceholder'|translate"
-        [inputIcon]="rotateCcwKeyIcon" [errorMessages]="{
+      <app-input formControlName="rePassword" [control]="signUpForm.get('rePassword')" [controlName]="'Re-Password'"
+        [labelForId]="'rePassword'" [labelText]="'auth.rePassword'|translate" [type]="'password'"
+        [placeholder]="'auth.rePasswordPlaceholder'|translate" [icon]="rotateCcwKeyIcon" [errorMessages]="{
       required: 'Confirm password is required',
       missMatch: 'Passwords do not match'
     }">
-      </app-auth-input>
+      </app-input>
 
       <!-- Phone -->
-      <app-auth-input formControlName="phone" [control]="signUpForm.get('phone')" [controlName]="'Phone'"
-        [labelForId]="'phone'" [labelText]="'auth.phone'|translate" [inputType]="'text'"
-        [inputPlaceholder]="'auth.phonePlaceholder'|translate" [inputIcon]="phoneIcon" [errorMessages]="{
+      <app-input formControlName="phone" [control]="signUpForm.get('phone')" [controlName]="'Phone'"
+        [labelForId]="'phone'" [labelText]="'auth.phone'|translate" [type]="'text'"
+        [placeholder]="'auth.phonePlaceholder'|translate" [icon]="phoneIcon" [errorMessages]="{
       required: 'Phone is required',
       pattern: 'Invalid Egyptian phone number'
     }">
-      </app-auth-input>
+      </app-input>
 
       <!-- Submit Button -->
       <button [disabled]="isLoading || signUpForm.invalid" type="submit"

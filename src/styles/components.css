@@ -22,3 +22,16 @@ div.mat-mdc-select-panel {
 .mdc-line-ripple::before {
   display: none;
 }
+
+/* form-field (input, textarea, ...) */
+/* Autofill Light */
+.form-field:-webkit-autofill {
+  box-shadow: inset 0 0 0 1000px #ffffff;
+  -webkit-text-fill-color: #0f172a;
+}
+
+/* Autofill Dark */
+.dark .form-field:-webkit-autofill {
+  box-shadow: inset 0 0 0 1000px #0f172a;
+  -webkit-text-fill-color: #ffffffcc;
+}

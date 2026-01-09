@@ -221,5 +221,33 @@
     "promoCode": "Promo code",
     "apply": "Apply",
     "total": "Total"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "steps": {
+      "shipping": "Shipping Details",
+      "payment": "Payment Method"
+    },
+    "form": {
+      "city": {
+        "label": "City",
+        "placeholder": "Enter your city"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "01XXXXXXXXX"
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Enter address details"
+      }
+    },
+    "paymentMethod": {
+      "cash": "Cash on Delivery",
+      "online": "Online Payment"
+    },
+    "actions": {
+      "confirm": "Confirm Order"
+    }
   }
 }

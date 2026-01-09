@@ -1,59 +1,86 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { HeaderTitle } from '../../../../shared/components/header-title/header-title';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../../services/payment';
-import { ICashPayRes } from '../../interfaces/ICashPay';
-import { IOnlinePayRes } from '../../interfaces/IOnlinePay';
+import { Input } from '../../../../shared/components/input/input';
+import {
+  Building2,
+  Phone,
+  MapPinHouse,
+  LucideAngularModule,
+  Banknote,
+  CreditCard,
+  MoveRight,
+} from 'lucide-angular';
+import { TranslatePipe } from '@ngx-translate/core';
+import { Textarea } from '../../../../shared/components/textarea/textarea';
 
 @Component({
   selector: 'app-checkout-page',
-  imports: [HeaderTitle, ReactiveFormsModule],
+  imports: [
+    HeaderTitle,
+    ReactiveFormsModule,
+    Input,
+    TranslatePipe,
+    Textarea,
+    LucideAngularModule,
+  ],
   templateUrl: './checkout-page.html',
   styleUrl: './checkout-page.css',
 })
 export class CheckoutPage implements OnInit {
   private readonly fb = inject(FormBuilder);
-  private readonly _ActivatedRoute = inject(ActivatedRoute);
-  private readonly _Router = inject(Router);
-  private readonly _PaymentService = inject(PaymentService);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  protected readonly paymentService = inject(PaymentService);
+  readonly paymentMethod = signal<'cash' | 'online'>('cash');
 
   paymentForm!: FormGroup;
-  cartId!: string;
+  readonly cartId = this.activatedRoute.snapshot.paramMap.get('cartId') ?? '';
+
+  readonly icons = {
+    city: Building2,
+    phone: Phone,
+    address: MapPinHouse,
+    cash: Banknote,
+    card: CreditCard,
+    next: MoveRight,
+  };
 
   ngOnInit(): void {
-    this.paymentForm = this.fb.group({
-      details: [],
-      phone: [],
-      city: [],
+    this.paymentForm = this.fb.nonNullable.group({
+      details: [null, [Validators.required]],
+      phone: [
+        null,
+        [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)],
+      ],
+      city: [null, [Validators.required]],
     });
-    this.cartId = this._ActivatedRoute.snapshot.paramMap.get('cartId')!;
   }
 
-  pay(method: string): void {
-    console.log(this.cartId);
+  selectMethod(method: 'cash' | 'online') {
+    this.paymentMethod.set(method);
+  }
 
-    if (method == 'cash') {
-      this.cashPayment();
-    } else {
-      this.onlinePayment();
+  confirmOrder(): void {
+    if (this.paymentForm.invalid) {
+      this.paymentForm.markAllAsTouched();
+      return;
     }
-  }
 
-  cashPayment() {
-    this._PaymentService
-      .cashPayment({ shippingAddress: this.paymentForm.value }, this.cartId)
-      .subscribe((res: ICashPayRes) => {
-        console.log(res);
-        this._Router.navigateByUrl('/orders/all');
-      });
-  }
+    const payload = {
+      shippingAddress: this.paymentForm.getRawValue(),
+    };
 
-  onlinePayment() {
-    this._PaymentService
-      .onlinePayment({ shippingAddress: this.paymentForm.value }, this.cartId)
-      .subscribe((res: IOnlinePayRes) => {
-        window.open(res.session.url, '_self');
-      });
+    if (this.paymentMethod() === 'cash') {
+      this.paymentService.cashPayment(payload, this.cartId);
+    } else {
+      this.paymentService.onlinePayment(payload, this.cartId);
+    }
   }
 }

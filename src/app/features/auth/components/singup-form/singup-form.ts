@@ -6,19 +6,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ErrorMessage } from '../error-message/error-message';
+import { ErrorMessage } from '../../../../shared/components/error-message/error-message';
 import { interval, Subscription, take } from 'rxjs';
 import { AuthServices } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ISignUpData, ISignUpResponse } from '../../interfaces/ISignUpUser';
 import { Router, RouterLink } from '@angular/router';
-import { AuthInput } from '../auth-input/auth-input';
+import { Input } from '../../../../shared/components/input/input';
 import { User, Mail, Phone, LockKeyhole, RotateCcwKey } from 'lucide-angular';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-singup-form',
-  imports: [ReactiveFormsModule, AuthInput, RouterLink, TranslatePipe],
+  imports: [ReactiveFormsModule, Input, RouterLink, TranslatePipe],
   templateUrl: './singup-form.html',
   styleUrl: './singup-form.css',
 })

@@ -12,7 +12,7 @@ import { ISignInData, ISignInResponse } from '../../interfaces/ISignInUser';
 import { toast } from 'ngx-sonner';
 import { AuthServices } from '../../services/auth.service';
 import { Mail, LockKeyhole, LucideAngularModule } from 'lucide-angular';
-import { AuthInput } from '../auth-input/auth-input';
+import { Input } from '../../../../shared/components/input/input';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -20,7 +20,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [
     ReactiveFormsModule,
     LucideAngularModule,
-    AuthInput,
+    Input,
     RouterLink,
     TranslatePipe,
   ],

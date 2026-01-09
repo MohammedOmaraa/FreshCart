@@ -1,6 +1,6 @@
 import { environments } from '../../../environments/environment';
 
-const BASE = `${environments.BaseURL}orders/`;
+const BASE = `${environments.BaseURL}orders`;
 
 export const PaymentApis = {
   /** Create Stripe checkout session */
